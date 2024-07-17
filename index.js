@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Partials, Events } = require("discord.js");
-const fs = require("fs");
+/* const fs = require("fs"); */
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -12,8 +12,7 @@ const client = new Client({
 });
 
 const BOOSTED_USER_IDS = new Set();
-const TOKEN =
-  "MTI1ODc4MjAxNjI1MDMxODg3OA.Gaqtlu.GVcRFHwnFrqVjvfPLfZ9Kfr8yYWozYyG53WEVI";
+const TOKEN = process.env.DISCORD_TOKEN;
 const ROLE_ID = "1258810313348874414"; // Reemplaza con el ID del rol específico
 const LOG_CHANNEL_ID = "1258815206021402764"; // Reemplaza con el ID del canal de registro
 
@@ -78,10 +77,10 @@ client.on(Events.MessageCreate, async (message) => {
 
     // El mensaje es de un usuario que ha recibido el rol recientemente
     console.log(`Registrando nick para ${message.author.tag}`);
-    fs.appendFileSync(
+/*     fs.appendFileSync(
       "boosted_users.txt",
       `ID:${message.author.id} - ${message.author.username}: ${message.content}\n`
-    );
+    ); */
 
     // Remueve al usuario del conjunto una vez que ha enviado su nick
     BOOSTED_USER_IDS.delete(message.author.id);
